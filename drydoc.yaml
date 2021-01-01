@@ -1,0 +1,11 @@
+---
+decls:
+  - type: unit
+    id: astra_ros
+    name: astra_ros
+    rule:
+      name: clang
+      params:
+        path: include
+    children: ~
+      

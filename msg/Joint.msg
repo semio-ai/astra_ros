@@ -1,0 +1,29 @@
+uint8 TYPE_HEAD = 0
+uint8 TYPE_SHOULDER_SPINE = 1
+uint8 TYPE_LEFT_SHOULDER = 2
+uint8 TYPE_LEFT_ELBOW = 3
+uint8 TYPE_LEFT_HAND = 4
+uint8 TYPE_RIGHT_SHOULDER = 5
+uint8 TYPE_RIGHT_ELBOW = 6
+uint8 TYPE_RIGHT_HAND = 7
+uint8 TYPE_MID_SPINE = 8
+uint8 TYPE_BASE_SPINE = 9
+uint8 TYPE_LEFT_HIP = 10
+uint8 TYPE_LEFT_KNEE = 11
+uint8 TYPE_LEFT_FOOT = 12
+uint8 TYPE_RIGHT_HIP = 13
+uint8 TYPE_RIGHT_KNEE = 14
+uint8 TYPE_RIGHT_FOOT = 15
+uint8 TYPE_LEFT_WRIST = 16
+uint8 TYPE_RIGHT_WRIST = 17
+uint8 TYPE_NECK = 18
+uint8 TYPE_UNKNOWN = 255
+
+uint8 STATUS_NOT_TRACKED = 0
+uint8 STATUS_LOW_CONFIDENCE = 1
+uint8 STATUS_TRACKED = 2
+
+uint8 type
+uint8 status
+astra_ros/Vector2f depth_position
+geometry_msgs/Pose pose

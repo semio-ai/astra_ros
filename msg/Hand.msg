@@ -1,0 +1,1 @@
+astra_ros/HandPoint[] hand_points

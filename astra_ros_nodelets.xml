@@ -1,0 +1,7 @@
+<library path="lib/libastra_ros_nodelet">
+  <class name="astra_ros/Nodelet" type="astra_ros::Nodelet" base_class_type="nodelet::Nodelet">
+    <description>
+      Astra SDK driver nodelet.
+    </description>
+  </class>
+</library>

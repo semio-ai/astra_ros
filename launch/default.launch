@@ -1,0 +1,5 @@
+<launch>
+  <node name="astra_ros" pkg="astra_ros" type="node" output="screen">
+    <rosparam file="$(find astra_ros)/params/default.yaml" />
+  </node>
+</launch>

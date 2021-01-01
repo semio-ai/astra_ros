@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="nodelet" type="nodelet" name="astra_ros" args="standalone astra_ros/Nodelet">
+    <rosparam file="$(find astra_ros)/params/default.yaml" />
+  </node>
+</launch>
