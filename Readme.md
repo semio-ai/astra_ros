@@ -22,7 +22,7 @@ catkin_make
 
 ### API Documentation
 
-View the C++ API documentation at <https://semio-ai.github.io/astra_ros/>.
+View the C++ API documentation at <https://semio-ai.github.io/astra_ros/annotated.html>.
 
 ## Node
 
