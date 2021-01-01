@@ -1,0 +1,131 @@
+\hypertarget{classastra__ros_1_1Parameter}{}\doxysection{astra\+\_\+ros\+::Parameter$<$ T $>$ Class Template Reference}
+\label{classastra__ros_1_1Parameter}\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+
+
+A \char`\"{}live\char`\"{} value that can be changed at runtime. Changes are broadcast to a listener.  
+
+
+
+
+{\ttfamily \#include $<$Parameter.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1Parameter_add3167394731f3df42b10b15e2b8f55d}\label{classastra__ros_1_1Parameter_add3167394731f3df42b10b15e2b8f55d}} 
+typedef \mbox{\hyperlink{classastra__ros_1_1ParameterImpl}{Parameter\+Impl}}$<$ T $>$\+::Value\+Type {\bfseries Value\+Type}
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1Parameter_a5e9c7f2d8c4f5c086f1541a2e694437b}\label{classastra__ros_1_1Parameter_a5e9c7f2d8c4f5c086f1541a2e694437b}} 
+typedef \mbox{\hyperlink{classastra__ros_1_1ParameterImpl}{Parameter\+Impl}}$<$ T $>$\+::On\+Change {\bfseries On\+Change}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classastra__ros_1_1Parameter_a59af36409ec3186e662f773260d83c66}{Parameter}} ()
+\item 
+\mbox{\hyperlink{classastra__ros_1_1Parameter_a99c2fa86837212a30511a65e3451bf6c}{Parameter}} (const T \&value)
+\item 
+bool \mbox{\hyperlink{classastra__ros_1_1Parameter_a7bb052e477b6cb1be9fdcd4ab5ada61c}{set}} (const T \&value)
+\item 
+const T \& \mbox{\hyperlink{classastra__ros_1_1Parameter_a42696e4b516db5b36f3bc6da5e9c1a9f}{get}} () const
+\item 
+const T \& \mbox{\hyperlink{classastra__ros_1_1Parameter_ad6edba1faf34d0b32d82d5214546b960}{operator$\ast$}} () const
+\item 
+void \mbox{\hyperlink{classastra__ros_1_1Parameter_a91b3a5cc89556c9da1f059be23e4ace7}{set\+On\+Change\+Handler}} (const boost\+::optional$<$ On\+Change $>$ \&on\+\_\+change)
+\item 
+{\footnotesize template$<$typename F , typename... Args$>$ }\\void \mbox{\hyperlink{classastra__ros_1_1Parameter_aaf8815e87010e91bbfb9830e360397d2}{bind\+On\+Change\+Handler}} (F \&\&f, Args \&\&...args)
+\item 
+const boost\+::optional$<$ On\+Change $>$ \& \mbox{\hyperlink{classastra__ros_1_1Parameter_a5fc648d1da48afb53effbcca425dfe04}{get\+On\+Change\+Handler}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename F , typename... Args$>$ }\\static On\+Change \mbox{\hyperlink{classastra__ros_1_1Parameter_af8f4c8663ceebf659286477e6e9c7d76}{bind}} (F \&\&f, Args \&\&...args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class astra\+\_\+ros\+::\+Parameter$<$ T $>$}
+
+A \char`\"{}live\char`\"{} value that can be changed at runtime. Changes are broadcast to a listener. 
+
+Parameters can be copied cheaply. They are backed by {\ttfamily \mbox{\hyperlink{classastra__ros_1_1ParameterImpl}{Parameter\+Impl}}}, which implements the actual logic. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classastra__ros_1_1Parameter_a59af36409ec3186e662f773260d83c66}\label{classastra__ros_1_1Parameter_a59af36409ec3186e662f773260d83c66}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!Parameter@{Parameter}}
+\index{Parameter@{Parameter}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Parameter()}{Parameter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::\mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a {\ttfamily \mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}}} with the value {\ttfamily T()} (the default value for the type {\ttfamily T}) \mbox{\Hypertarget{classastra__ros_1_1Parameter_a99c2fa86837212a30511a65e3451bf6c}\label{classastra__ros_1_1Parameter_a99c2fa86837212a30511a65e3451bf6c}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!Parameter@{Parameter}}
+\index{Parameter@{Parameter}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Parameter()}{Parameter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::\mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}} (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a {\ttfamily \mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}}} with a given value 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classastra__ros_1_1Parameter_af8f4c8663ceebf659286477e6e9c7d76}\label{classastra__ros_1_1Parameter_af8f4c8663ceebf659286477e6e9c7d76}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!bind@{bind}}
+\index{bind@{bind}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename F , typename... Args$>$ \\
+static On\+Change \mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::bind (\begin{DoxyParamCaption}\item[{F \&\&}]{f,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Helper method used by bind\+On\+Change\+Handler. Wraps std\+::bind in an On\+Change. \mbox{\Hypertarget{classastra__ros_1_1Parameter_aaf8815e87010e91bbfb9830e360397d2}\label{classastra__ros_1_1Parameter_aaf8815e87010e91bbfb9830e360397d2}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!bindOnChangeHandler@{bindOnChangeHandler}}
+\index{bindOnChangeHandler@{bindOnChangeHandler}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{bindOnChangeHandler()}{bindOnChangeHandler()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename F , typename... Args$>$ \\
+void \mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::bind\+On\+Change\+Handler (\begin{DoxyParamCaption}\item[{F \&\&}]{f,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convience method for setting the {\ttfamily On\+Change} handler with semantics equivalent to {\ttfamily std\+::bind}. \mbox{\Hypertarget{classastra__ros_1_1Parameter_a42696e4b516db5b36f3bc6da5e9c1a9f}\label{classastra__ros_1_1Parameter_a42696e4b516db5b36f3bc6da5e9c1a9f}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!get@{get}}
+\index{get@{get}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T\& \mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Retrieve the value of the {\ttfamily \mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}}}. \mbox{\Hypertarget{classastra__ros_1_1Parameter_a5fc648d1da48afb53effbcca425dfe04}\label{classastra__ros_1_1Parameter_a5fc648d1da48afb53effbcca425dfe04}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!getOnChangeHandler@{getOnChangeHandler}}
+\index{getOnChangeHandler@{getOnChangeHandler}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getOnChangeHandler()}{getOnChangeHandler()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const boost\+::optional$<$On\+Change$>$\& \mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::get\+On\+Change\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Retrieve the current on\+Change handler \begin{DoxyReturn}{Returns}
+boost\+::none if not set, otherwise the on\+Change handler 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classastra__ros_1_1Parameter_ad6edba1faf34d0b32d82d5214546b960}\label{classastra__ros_1_1Parameter_ad6edba1faf34d0b32d82d5214546b960}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T\& \mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convenience method. Equivalent to {\ttfamily \mbox{\hyperlink{classastra__ros_1_1Parameter_a42696e4b516db5b36f3bc6da5e9c1a9f}{get()}}}. \mbox{\Hypertarget{classastra__ros_1_1Parameter_a7bb052e477b6cb1be9fdcd4ab5ada61c}\label{classastra__ros_1_1Parameter_a7bb052e477b6cb1be9fdcd4ab5ada61c}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!set@{set}}
+\index{set@{set}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::set (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Update the value of the {\ttfamily \mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}}}. Changes are broadcast to the {\ttfamily On\+Change} listener. \mbox{\Hypertarget{classastra__ros_1_1Parameter_a91b3a5cc89556c9da1f059be23e4ace7}\label{classastra__ros_1_1Parameter_a91b3a5cc89556c9da1f059be23e4ace7}} 
+\index{astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}!setOnChangeHandler@{setOnChangeHandler}}
+\index{setOnChangeHandler@{setOnChangeHandler}!astra\_ros::Parameter$<$ T $>$@{astra\_ros::Parameter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setOnChangeHandler()}{setOnChangeHandler()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classastra__ros_1_1Parameter}{astra\+\_\+ros\+::\+Parameter}}$<$ T $>$\+::set\+On\+Change\+Handler (\begin{DoxyParamCaption}\item[{const boost\+::optional$<$ On\+Change $>$ \&}]{on\+\_\+change }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the {\ttfamily On\+Change} handler that is called when values change. This shouldn\textquotesingle{}t be used by the \mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}} \char`\"{}client\char`\"{}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/astra\+\_\+ros/Parameter.\+hpp\end{DoxyCompactItemize}

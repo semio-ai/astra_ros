@@ -1,0 +1,49 @@
+\hypertarget{classastra__ros_1_1ParameterImpl}{}\doxysection{astra\+\_\+ros\+::Parameter\+Impl$<$ T $>$ Class Template Reference}
+\label{classastra__ros_1_1ParameterImpl}\index{astra\_ros::ParameterImpl$<$ T $>$@{astra\_ros::ParameterImpl$<$ T $>$}}
+
+
+Internal implementation of a \mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}}.  
+
+
+
+
+{\ttfamily \#include $<$Parameter.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1ParameterImpl_aa4b81deeadb5b72ac98136c4fd534436}\label{classastra__ros_1_1ParameterImpl_aa4b81deeadb5b72ac98136c4fd534436}} 
+typedef T {\bfseries Value\+Type}
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1ParameterImpl_a7f83869bc83ebd532d3711dab5cf2f90}\label{classastra__ros_1_1ParameterImpl_a7f83869bc83ebd532d3711dab5cf2f90}} 
+typedef std\+::function$<$ bool(const T \&value, const T \&previous)$>$ {\bfseries On\+Change}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1ParameterImpl_ae36f2e332dde31185c19fc8d501fcf58}\label{classastra__ros_1_1ParameterImpl_ae36f2e332dde31185c19fc8d501fcf58}} 
+{\bfseries Parameter\+Impl} (const T \&value)
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1ParameterImpl_ac0dd921c71d3b3812a7c46236bd376f4}\label{classastra__ros_1_1ParameterImpl_ac0dd921c71d3b3812a7c46236bd376f4}} 
+bool {\bfseries set} (const T \&value) noexcept
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1ParameterImpl_a30ab18f4ebfc17634d09151880f20d20}\label{classastra__ros_1_1ParameterImpl_a30ab18f4ebfc17634d09151880f20d20}} 
+const T \& {\bfseries get} () const noexcept
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1ParameterImpl_aed47184b8748b3a4ecc4e61a75c70316}\label{classastra__ros_1_1ParameterImpl_aed47184b8748b3a4ecc4e61a75c70316}} 
+void {\bfseries set\+On\+Change\+Handler} (const boost\+::optional$<$ On\+Change $>$ \&on\+\_\+change)
+\item 
+\mbox{\Hypertarget{classastra__ros_1_1ParameterImpl_a5c343f488c96fa904fcba3acf99bfe1b}\label{classastra__ros_1_1ParameterImpl_a5c343f488c96fa904fcba3acf99bfe1b}} 
+const boost\+::optional$<$ On\+Change $>$ \& {\bfseries get\+On\+Change\+Handler} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class astra\+\_\+ros\+::\+Parameter\+Impl$<$ T $>$}
+
+Internal implementation of a \mbox{\hyperlink{classastra__ros_1_1Parameter}{Parameter}}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/astra\+\_\+ros/Parameter.\+hpp\end{DoxyCompactItemize}

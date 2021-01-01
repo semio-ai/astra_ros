@@ -1,0 +1,54 @@
+\hypertarget{classastra__ros_1_1RosDevice}{}\doxysection{astra\+\_\+ros\+::Ros\+Device Class Reference}
+\label{classastra__ros_1_1RosDevice}\index{astra\_ros::RosDevice@{astra\_ros::RosDevice}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classastra__ros_1_1RosDevice_ac75a3efe422a8c606e2a18917308da11}{Ros\+Device}} (const std\+::string \&name, ros\+::\+Node\+Handle \&nh, ros\+::\+Node\+Handle \&pnh)
+\item 
+const std\+::string \& \mbox{\hyperlink{classastra__ros_1_1RosDevice_a42270a24ec39489fe8ac4ff828f7664b}{get\+Name}} () const noexcept
+\item 
+void \mbox{\hyperlink{classastra__ros_1_1RosDevice_af6740fc245d517b91c3a898b0ac37ead}{update}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classastra__ros_1_1RosDevice_ac75a3efe422a8c606e2a18917308da11}\label{classastra__ros_1_1RosDevice_ac75a3efe422a8c606e2a18917308da11}} 
+\index{astra\_ros::RosDevice@{astra\_ros::RosDevice}!RosDevice@{RosDevice}}
+\index{RosDevice@{RosDevice}!astra\_ros::RosDevice@{astra\_ros::RosDevice}}
+\doxysubsubsection{\texorpdfstring{RosDevice()}{RosDevice()}}
+{\footnotesize\ttfamily astra\+\_\+ros\+::\+Ros\+Device\+::\+Ros\+Device (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{ros\+::\+Node\+Handle \&}]{nh,  }\item[{ros\+::\+Node\+Handle \&}]{pnh }\end{DoxyParamCaption})}
+
+Construct a \mbox{\hyperlink{classastra__ros_1_1Device}{Device}} that interacts with R\+OS.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the device. This is used as a namespace for the R\+OS parameters under the private {\ttfamily Node\+Handle}. \\
+\hline
+{\em nh} & The public R\+OS {\ttfamily Node\+Handle} \\
+\hline
+{\em pnh} & The private R\+OS {\ttfamily Node\+Handle} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classastra__ros_1_1RosDevice_a42270a24ec39489fe8ac4ff828f7664b}\label{classastra__ros_1_1RosDevice_a42270a24ec39489fe8ac4ff828f7664b}} 
+\index{astra\_ros::RosDevice@{astra\_ros::RosDevice}!getName@{getName}}
+\index{getName@{getName}!astra\_ros::RosDevice@{astra\_ros::RosDevice}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const std\+::string\& astra\+\_\+ros\+::\+Ros\+Device\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+The name of the \mbox{\hyperlink{classastra__ros_1_1RosDevice}{Ros\+Device}} (as configured in the constructor) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classastra__ros_1_1RosDevice_af6740fc245d517b91c3a898b0ac37ead}\label{classastra__ros_1_1RosDevice_af6740fc245d517b91c3a898b0ac37ead}} 
+\index{astra\_ros::RosDevice@{astra\_ros::RosDevice}!update@{update}}
+\index{update@{update}!astra\_ros::RosDevice@{astra\_ros::RosDevice}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void astra\+\_\+ros\+::\+Ros\+Device\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Check if a new frame is available, and if so, publish all configured data to R\+OS. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/astra\+\_\+ros/Ros\+Device.\+hpp\end{DoxyCompactItemize}
