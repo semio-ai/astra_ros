@@ -4,7 +4,7 @@ astra_ros wraps the Orbbec Astra SDK for ROS. It can be used as a library (with 
 
 ## Installation
 
-```
+```.sh
 cd /path/to/your_catkin_workspace/src
 git clone https://github.com/semio-ai/astra_ros.git
 ```
@@ -13,7 +13,7 @@ git clone https://github.com/semio-ai/astra_ros.git
 
 The Astra SDK must be installed on the system. Set the environment variable `ASTRA_ROOT` to the root of the Astra SDK if it cannot be found.
 
-```
+```.sh
 cd /path/to/your_catkin_workspace
 catkin_make
 ```
@@ -61,7 +61,7 @@ View the C++ API documentation at <https://semio-ai.github.io/astra_ros/annotate
 
 #### Example ROS Parameter file
 
-```
+```.yaml
 devices:
   default:
     color: true
