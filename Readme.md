@@ -18,6 +18,12 @@ cd /path/to/your_catkin_workspace
 catkin_make
 ```
 
+## Documentation
+
+### API Documentation
+
+View the C++ API documentation at <https://semio-ai.github.io/astra_ros/>.
+
 ## Node
 
 ### Parameters
