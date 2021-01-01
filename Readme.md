@@ -20,6 +20,10 @@ catkin_make
 
 ## Documentation
 
+### Node Tutorial
+
+View the node tutorial at <https://github.com/semio-ai/astra_ros/wiki/Tutorial>.
+
 ### API Documentation
 
 View the C++ API documentation at <https://semio-ai.github.io/astra_ros/annotated.html>.
