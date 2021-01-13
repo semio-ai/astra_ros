@@ -1,13 +1,13 @@
 ---
 decl:
   type: unit
-  id: home
-  name: home
+  id: astra_ros
+  name: "Astra ROS"
   rule:
     name: copy
     params:
       path: readme.md
-      name: Home
+      name: "astra_ros"
   children:
     -
       type: unit
@@ -21,11 +21,11 @@ decl:
           hidden: "true"
     -
       type: unit
-      id: astra_ros
-      name: astra_ros
+      id: astra_ros_api
+      name: astra_ros_api
       rule:
         name: clang
         params:
           path: include
           name: "API Documentation"
-          arguments: "-I/var/chroot/xenial/opt/ros/kinetic/include/ -I/home/beta/Development/AstraSDK-v2.1.1/include"
+          arguments: "-I/opt/ros/kinetic/include/ -I/home/beta/Development/AstraSDK-v2.1.1/include"
