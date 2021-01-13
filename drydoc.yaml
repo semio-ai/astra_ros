@@ -1,11 +1,31 @@
 ---
-decls:
-  - type: unit
-    id: astra_ros
-    name: astra_ros
-    rule:
-      name: clang
-      params:
-        path: include
-    children: ~
-      
+decl:
+  type: unit
+  id: home
+  name: home
+  rule:
+    name: copy
+    params:
+      path: readme.md
+      name: Home
+  children:
+    -
+      type: unit
+      id: book
+      name: book
+      rule:
+        name: copy
+        params:
+          path: book/orange.jpg
+          name: Book
+          hidden: "true"
+    -
+      type: unit
+      id: astra_ros
+      name: astra_ros
+      rule:
+        name: clang
+        params:
+          path: include
+          name: "API Documentation"
+          arguments: "-I/var/chroot/xenial/opt/ros/kinetic/include/ -I/home/beta/Development/AstraSDK-v2.1.1/include"

@@ -179,6 +179,11 @@ namespace astra_ros
     {
       typedef std::function<void (const Frame &frame)> OnFrame;
 
+      /**
+       * \struct ColorStream
+       * 
+       * Holds configuration options for the Astra color stream
+       */
       struct ColorStream
       {
         typedef Parameter<bool> Running;
@@ -199,6 +204,11 @@ namespace astra_ros
         boost::optional<Mode> mode;
       };
 
+      /**
+       * \struct IrStream
+       * 
+       * Holds configuration options for the Astra IR stream
+       */
       struct IrStream
       {
         typedef Parameter<bool> Running;
@@ -267,6 +277,8 @@ namespace astra_ros
         typedef Parameter<astra_body_tracking_feature_flags_t> BodyFeatures;
 
         /**
+         * \property license
+         * 
          * The Orbbec Body Tracking SDK license key. Depending on the Astra SDK used, this may be required.
          */
         boost::optional<std::string> license;
@@ -336,24 +348,32 @@ namespace astra_ros
       boost::optional<BodyStream> body_stream;
       
       /**
+       * \property colorized_body_stream
+       * 
        * Configure the `Device`'s colorized body stream. `boost::none` means no colorized body stream will be
        * provided in the `Frame`.
        */
       boost::optional<ColorizedBodyStream> colorized_body_stream;
       
       /**
+       * \property hand_stream
+       * 
        * Configure the `Device`'s hand stream. `boost::none` means no hand stream will be
        * provided in the `Frame`.
        */
       boost::optional<HandStream> hand_stream;
       
       /**
+       * \property masked_color_stream
+       * 
        * Configure the `Device`'s masked color stream. `boost::none` means no masked color stream will be
        * provided in the `Frame`.
        */
       boost::optional<MaskedColorStream> masked_color_stream;
       
       /**
+       * \property point_stream
+       * 
        * Configure the `Device`'s point cloud stream. `boost::none` means no masked point cloud stream will be
        * provided in the `Frame`.
        */
@@ -361,6 +381,7 @@ namespace astra_ros
     };
 
     /**
+     * \fn open
      * Open an Orbbec device
      * 
      * \param configuration The `Configuration` to use for this device.
@@ -368,11 +389,13 @@ namespace astra_ros
     static Ptr open(const Configuration &configuration);
 
     /**
+     * \fn update
      * If a new frame is available, process it and call the `OnFrame` handler as specified in the `Configuration`.
      */
     void update();
 
     /**
+     * \fn getConfiguration
      * \return A constant reference to the configuration.
      */
     inline const Configuration &getConfiguration() const noexcept
@@ -381,6 +404,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn getConfiguration
      * \return A mutable reference to the configuration. Can be used to update parameters.
      */
     inline Configuration &getConfiguration() noexcept
@@ -389,36 +413,43 @@ namespace astra_ros
     }
 
     /**
+     * \fn getCameraParameters
      * \return The color and depth camera intrinsics
      */
     orbbec_camera_params getCameraParameters() const;
 
     /**
+     * \fn getSerialNumber 
      * \return The Orbbec device's serial number, or `boost::none` if the `Device` has no depth stream.
      */
     boost::optional<std::string> getSerialNumber() const;
 
     /**
+     * \fn getChipId
      * \return The Orbbec device's Chip ID, or `boost::none` if the `Device` has no depth stream.
      */
     boost::optional<std::uint32_t> getChipId() const;
 
     /**
+     * \fn getColorUsbInfo
      * \return The USB information for the depth camera, or `boost::none` if the `Device` has no color stream.
      */
     boost::optional<astra_usb_info_t> getColorUsbInfo() const;
     
     /**
+     * \fn getDepthUsbInfo
      * \return The USB information for the depth camera, or `boost::none` if the `Device` has no depth stream.
      */
     boost::optional<astra_usb_info_t> getDepthUsbInfo() const;
 
     /**
+     * \fn getIrUsbInfo
      * \return The USB information for the IR camera, or `boost::none` if the `Device` has no IR stream.
      */
     boost::optional<astra_usb_info_t> getIrUsbInfo() const;
 
     /**
+     * \fn getColorImageStream
      * Get the image modes supported by the color stream.
      * 
      * \return boost::none if the device wasn't configured with a color stream, a list of image modes otherwise.

@@ -89,6 +89,7 @@ namespace astra_ros
     typedef typename ParameterImpl<T>::OnChange OnChange;
 
     /**
+     * \fn Parameter
      * Create a `Parameter` with the value `T()` (the default value for the type `T`) 
      */
     Parameter()
@@ -97,6 +98,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn Parameter
      * Create a `Parameter` with a given value
      */
     Parameter(const T &value)
@@ -105,6 +107,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn set
      * Update the value of the `Parameter`. Changes are broadcast to the `OnChange` listener.
      */
     bool set(const T &value)
@@ -113,6 +116,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn get
      * Retrieve the value of the `Parameter`.
      */
     const T &get() const
@@ -121,6 +125,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn operator*
      * Convenience method. Equivalent to `get()`.
      */
     const T &operator *() const
@@ -129,6 +134,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn setOnChangeHandler
      * Set the `OnChange` handler that is called when values change. This shouldn't be used by the
      * Parameter "client".
      */
@@ -138,6 +144,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn bindOnChangeHandler
      * Convience method for setting the `OnChange` handler with semantics equivalent to `std::bind`. 
      */
     template<typename F, typename... Args>
@@ -147,6 +154,7 @@ namespace astra_ros
     }
 
     /**
+     * \fn getOnChangeHandler
      * Retrieve the current onChange handler
      * \return boost::none if not set, otherwise the onChange handler
      */
