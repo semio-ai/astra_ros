@@ -28,4 +28,4 @@ decl:
         params:
           path: include
           name: "API Documentation"
-          arguments: "-I/opt/ros/kinetic/include/ -I/home/beta/Development/AstraSDK-v2.1.1/include"
+          arguments: "-I/opt/ros/kinetic/include/ -I$(echo $ASTRA_ROOT)/include"
