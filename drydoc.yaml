@@ -11,6 +11,16 @@ decl:
   children:
     -
       type: unit
+      id: ros
+      name: "ROS Types"
+      rule:
+        name: ros
+        params:
+          path: msg,srv
+          package: astra_ros
+          name: "ROS Types"
+    -
+      type: unit
       id: book
       name: book
       rule:
