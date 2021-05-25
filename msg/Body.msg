@@ -23,6 +23,9 @@ geometry_msgs/Vector3 center_of_mass
 # The joints of the humanoid
 astra_ros/Joint[] joints
 
+# The body's face bounding box in image coordinates
+astra_ros/BoundingBox face_bounding_box
+
 # Only available if color and registered depth images are
 # available.
 sensor_msgs/PointCloud point_cloud

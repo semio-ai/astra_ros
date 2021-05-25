@@ -763,32 +763,32 @@ namespace
 
 std::ostream &operator <<(std::ostream &o, const Device::Configuration::ColorStream &value)
 {
-
+  return o;
 }
 
 std::ostream &operator <<(std::ostream &o, const Device::Configuration::IrStream &value)
 {
-
+  return o;
 }
 
 std::ostream &operator <<(std::ostream &o, const Device::Configuration::DepthStream &value)
 {
-
+  return o;
 }
 
 std::ostream &operator <<(std::ostream &o, const Device::Configuration::BodyStream &value)
 {
-
+  return o;
 }
 
 std::ostream &operator <<(std::ostream &o, const Device::Configuration::ColorizedBodyStream &value)
 {
-
+  return o;
 }
 
 std::ostream &operator <<(std::ostream &o, const Device::Configuration::MaskedColorStream &value)
 {
-
+  return o;
 }
 
 std::ostream &operator <<(std::ostream &o, const Device::Configuration &value)

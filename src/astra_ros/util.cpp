@@ -11,6 +11,8 @@
 
 #include <eigen3/Eigen/Dense>
 
+#include <optional>
+
 #include "visualization.hpp"
 
 namespace std
@@ -189,8 +191,11 @@ astra_ros::Body astra_ros::toRos(const astra_body_t &body, const std_msgs::Heade
     joint.pose.orientation.w = q.w();
     
 
-    ret.joints.push_back(joint);
+    ret.joints.emplace_back(std::move(joint));
+    const auto &back = ret.joints.back();
   }
+
+  
 
   ret.left_hand_pose = static_cast<std::uint8_t>(body.handPoses.leftHand);
   ret.right_hand_pose = static_cast<std::uint8_t>(body.handPoses.rightHand);

@@ -68,6 +68,7 @@ add_message_files(
   FILES
   Body.msg
   BodyFrame.msg
+  BoundingBox.msg
   ImageStreamMode.msg
   Joint.msg
   Plane.msg

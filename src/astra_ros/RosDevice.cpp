@@ -8,6 +8,8 @@
 #include <string>
 #include <iostream>
 
+#include <eigen3/Eigen/Dense>
+
 #include "util.hpp"
 #include "tf.hpp"
 #include "visualization.hpp"
@@ -73,6 +75,18 @@ namespace
     else value = Parameter<T>(raw);
 
     return true;
+  }
+
+  template<typename Iter>
+  Joint *findJoint(const Iter begin, const Iter end, const Joint::_type_type type)
+  {
+    for (auto it = begin; it != end; ++it)
+    {
+      if (it->type != type) continue;
+      return &*it;
+    }
+
+    return nullptr;
   }
 }
 
@@ -483,6 +497,59 @@ void RosDevice::onFrame(const Device::Frame &frame)
     body_frame.bodies = toRos(frame.body->body_list, header);
     body_frame.floor_detected = frame.body->floor_info->floorDetected;
     body_frame.floor_plane = toRos(frame.body->floor_info->floorPlane);
+
+    const double fx = color_camera_info->K[0];
+    const double fy = color_camera_info->K[4];
+    const double cx = color_camera_info->K[2];
+    const double cy = color_camera_info->K[5];
+
+    Eigen::Matrix3d intrinsics;
+    intrinsics <<
+      fx , 0.0, cx,
+      0.0, fy , cy,
+      0.0, 0.0, 1.0;
+
+    if (color_camera_info)
+    {
+      for (auto &body : body_frame.bodies)
+      {
+        const Joint *const head = findJoint(body.joints.begin(), body.joints.end(), Joint::TYPE_HEAD);
+        if (!head) continue;
+
+        // ~17 cm width
+        const static double AVERAGE_HUMAN_HEAD_Y = 0.01778;
+
+        // ~22 cm height
+        const static double AVERAGE_HUMAN_HEAD_Z = 0.02286;
+        
+        const auto &position = head->pose.position;
+
+        Eigen::Vector3d top_left(
+          position.x,
+          position.y + AVERAGE_HUMAN_HEAD_Y / 2.0,
+          position.z + AVERAGE_HUMAN_HEAD_Z / 2.0
+        );
+
+        Eigen::Vector3d bottom_right(
+          position.x,
+          position.y - AVERAGE_HUMAN_HEAD_Y / 2.0,
+          position.z - AVERAGE_HUMAN_HEAD_Z / 2.0
+        );
+
+        const auto transformed_top_left = intrinsics * top_left;
+        const auto transformed_bottom_right = intrinsics * bottom_right;
+
+        auto &bounding_box = body.face_bounding_box;
+
+        bounding_box.top_left.x = transformed_top_left.x();
+        bounding_box.top_left.y = transformed_top_left.y();
+
+        bounding_box.bottom_right.x = transformed_bottom_right.x();
+        bounding_box.bottom_right.y = transformed_bottom_right.y();
+      }
+    }
+
+   
 
     if (depth_image && color_image && color_camera_info)
     {
