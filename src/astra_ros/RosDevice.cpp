@@ -503,49 +503,76 @@ void RosDevice::onFrame(const Device::Frame &frame)
     const double cx = color_camera_info->K[2];
     const double cy = color_camera_info->K[5];
 
-    Eigen::Matrix3d intrinsics;
+    Eigen::Matrix<double, 3, 4> intrinsics;
     intrinsics <<
-      fx , 0.0, cx,
-      0.0, fy , cy,
-      0.0, 0.0, 1.0;
+      fx , 0.0, cx , 0.0,
+      0.0, fy , cy , 0.0,
+      0.0, 0.0, 1.0, 0.0;
 
     if (color_camera_info)
     {
       for (auto &body : body_frame.bodies)
       {
+        for (auto &joint : body.joints)
+        {
+          const auto &position = joint.pose.position;
+          Eigen::Vector4d eigen_position(
+            position.x,
+            position.y,
+            position.z,
+            1.0
+          );
+
+          const auto transformed = intrinsics * eigen_position;
+
+
+          joint.color_position.x = transformed.x();
+          joint.color_position.y = transformed.y();
+        }
+
         const Joint *const head = findJoint(body.joints.begin(), body.joints.end(), Joint::TYPE_HEAD);
-        if (!head) continue;
+        if (!head)
+        {
+          ROS_WARN_STREAM("No head found for body \"" << body.id << "\"");
+          continue;
+        }
 
         // ~17 cm width
-        const static double AVERAGE_HUMAN_HEAD_Y = 0.01778;
+        const static double AVERAGE_HUMAN_HEAD_X = 0.1778;
 
         // ~22 cm height
-        const static double AVERAGE_HUMAN_HEAD_Z = 0.02286;
+        const static double AVERAGE_HUMAN_HEAD_Y = 0.2286;
         
         const auto &position = head->pose.position;
 
-        Eigen::Vector3d top_left(
-          position.x,
-          position.y + AVERAGE_HUMAN_HEAD_Y / 2.0,
-          position.z + AVERAGE_HUMAN_HEAD_Z / 2.0
+        Eigen::Vector4d top_left(
+          position.x - AVERAGE_HUMAN_HEAD_X / 2.0,
+          position.y - AVERAGE_HUMAN_HEAD_Y / 2.0,
+          position.z,
+          1.0
         );
 
-        Eigen::Vector3d bottom_right(
-          position.x,
-          position.y - AVERAGE_HUMAN_HEAD_Y / 2.0,
-          position.z - AVERAGE_HUMAN_HEAD_Z / 2.0
+        Eigen::Vector4d bottom_right(
+          position.x + AVERAGE_HUMAN_HEAD_X / 2.0,
+          position.y + AVERAGE_HUMAN_HEAD_Y / 2.0,
+          position.z,
+          1.0
         );
+
+        ROS_INFO_STREAM("top left: " << top_left << ", bottom right: " << bottom_right);
 
         const auto transformed_top_left = intrinsics * top_left;
         const auto transformed_bottom_right = intrinsics * bottom_right;
 
+        ROS_INFO_STREAM("t top left: " << transformed_top_left << ", t bottom right: " << transformed_bottom_right);
+
         auto &bounding_box = body.face_bounding_box;
 
-        bounding_box.top_left.x = transformed_top_left.x();
-        bounding_box.top_left.y = transformed_top_left.y();
+        bounding_box.top_left.x = clamp(0, static_cast<int>(transformed_top_left.x()), static_cast<int>(color_camera_info->width));
+        bounding_box.top_left.y = clamp(0, static_cast<int>(transformed_top_left.y()), static_cast<int>(color_camera_info->height));
 
-        bounding_box.bottom_right.x = transformed_bottom_right.x();
-        bounding_box.bottom_right.y = transformed_bottom_right.y();
+        bounding_box.bottom_right.x = clamp(0, static_cast<int>(transformed_bottom_right.x()), static_cast<int>(color_camera_info->width));
+        bounding_box.bottom_right.y = clamp(0, static_cast<int>(transformed_bottom_right.y()), static_cast<int>(color_camera_info->height));
       }
     }
 

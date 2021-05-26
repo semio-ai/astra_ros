@@ -26,4 +26,5 @@ uint8 STATUS_TRACKED = 2
 uint8 type
 uint8 status
 astra_ros/Vector2f depth_position
+astra_ros/Vector2i color_position
 geometry_msgs/Pose pose

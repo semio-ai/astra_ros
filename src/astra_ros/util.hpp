@@ -23,6 +23,14 @@ namespace astra_ros
   Plane toRos(const astra_plane_t &plane);
   ImageStreamMode toRos(const Device::ImageStreamMode &image_stream_mode);
   Device::ImageStreamMode fromRos(const ImageStreamMode &image_stream_mode);
+
+  template<typename T>
+  T clamp(const T min, const T value, const T max)
+  {
+    if (min > value) return min;
+    if (max < value) return max;
+    return value;
+  }
 } 
 
 #endif
