@@ -402,6 +402,11 @@ Device::Device(const Configuration &configuration)
       check_status(astra_bodystream_set_skeleton_optimization(stream, **skeleton_profile));
     }*/
 
+    
+
+    astra_bodystream_set_skeleton_profile(stream, ASTRA_SKELETON_PROFILE_FULL);
+    astra_bodystream_set_default_body_features(stream, ASTRA_BODY_TRACKING_SEGMENTATION | ASTRA_BODY_TRACKING_JOINTS | ASTRA_BODY_TRACKING_HAND_POSES);
+
     // Configure the running parameter
     auto &running = configuration_.body_stream->running;
     running.bindOnChangeHandler(&Device::onStreamStartedChange, this, stream);

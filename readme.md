@@ -52,6 +52,7 @@ View the C++ API documentation at <https://semio-ai.github.io/astra_ros/annotate
 
 #### 4.1.4. Body Stream
   - `~/devices/$DEVICE_NAME/body` - Must be present for the body stream to be *enabled*. Can either contain sub-keys or be set to `true`. If the stream is not enabled, setting it to *running* later is not possible.
+  - `~/devices/$DEVICE_NAME/body/publish_tf` - Set whether to publish TF frames. Defaults to `true`.
   - `~/devices/$DEVICE_NAME/body/running` - Set whether the body stream is running. Defaults to `true`.
   - `~/devices/$DEVICE_NAME/body/publish_body_markers` - Set whether visualization markers are published for tracked bodies. Defaults to `false`.
   - `~/devices/$DEVICE_NAME/body/publish_body_mask` - Set whether the body mask image is published. Defaults to `true`.

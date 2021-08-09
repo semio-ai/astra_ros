@@ -103,12 +103,14 @@ RosDevice::RosDevice(const std::string &name, ros::NodeHandle &nh, ros::NodeHand
   , publish_body_markers(false)
   , publish_body_mask(true)
   , publish_floor_mask(true)
+  , publish_tf(true)
   , body_frame_id("/camera")
 {
   device_nh_.getParam("body/publish_body_markers", publish_body_markers);
   device_nh_.getParam("body/publish_body_mask", publish_body_mask);
   device_nh_.getParam("body/publish_floor_mask", publish_floor_mask);
   device_nh_.getParam("body/frame_id", body_frame_id);
+  device_nh_.getParam("body/publish_tf", publish_tf);
 
   Device::Configuration config = getConfiguration(device_nh_);
   config.on_frame = std::bind(&RosDevice::onFrame, this, std::placeholders::_1);
@@ -498,8 +500,8 @@ void RosDevice::onFrame(const Device::Frame &frame)
     body_frame.floor_detected = frame.body->floor_info->floorDetected;
     body_frame.floor_plane = toRos(frame.body->floor_info->floorPlane);
 
-    const double fx = color_camera_info->K[0];
-    const double fy = color_camera_info->K[4];
+    const double fx = 0.5; // color_camera_info->K[0];
+    const double fy = 0.5; // color_camera_info->K[4];
     const double cx = color_camera_info->K[2];
     const double cy = color_camera_info->K[5];
 
@@ -515,19 +517,8 @@ void RosDevice::onFrame(const Device::Frame &frame)
       {
         for (auto &joint : body.joints)
         {
-          const auto &position = joint.pose.position;
-          Eigen::Vector4d eigen_position(
-            position.x,
-            position.y,
-            position.z,
-            1.0
-          );
-
-          const auto transformed = intrinsics * eigen_position;
-
-
-          joint.color_position.x = transformed.x();
-          joint.color_position.y = transformed.y();
+          joint.color_position.x = joint.depth_position.x;
+          joint.color_position.y = joint.depth_position.y;
         }
 
         const Joint *const head = findJoint(body.joints.begin(), body.joints.end(), Joint::TYPE_HEAD);
@@ -537,42 +528,26 @@ void RosDevice::onFrame(const Device::Frame &frame)
           continue;
         }
 
-        // ~17 cm width
-        const static double AVERAGE_HUMAN_HEAD_X = 0.1778;
+        const Joint *const neck = findJoint(body.joints.begin(), body.joints.end(), Joint::TYPE_NECK);
+        if (!neck)
+        {
+          ROS_WARN_STREAM("No neck found for body \"" << body.id << "\"");
+          continue;
+        }
 
-        // ~22 cm height
-        const static double AVERAGE_HUMAN_HEAD_Y = 0.2286;
+        const double half_height = std::abs(head->depth_position.y - neck->depth_position.y);
+        const double half_width = 4.0 / 5.0 * half_height;
         
         const auto &position = head->pose.position;
 
-        Eigen::Vector4d top_left(
-          position.x - AVERAGE_HUMAN_HEAD_X / 2.0,
-          position.y - AVERAGE_HUMAN_HEAD_Y / 2.0,
-          position.z,
-          1.0
-        );
-
-        Eigen::Vector4d bottom_right(
-          position.x + AVERAGE_HUMAN_HEAD_X / 2.0,
-          position.y + AVERAGE_HUMAN_HEAD_Y / 2.0,
-          position.z,
-          1.0
-        );
-
-        ROS_INFO_STREAM("top left: " << top_left << ", bottom right: " << bottom_right);
-
-        const auto transformed_top_left = intrinsics * top_left;
-        const auto transformed_bottom_right = intrinsics * bottom_right;
-
-        ROS_INFO_STREAM("t top left: " << transformed_top_left << ", t bottom right: " << transformed_bottom_right);
-
         auto &bounding_box = body.face_bounding_box;
 
-        bounding_box.top_left.x = clamp(0, static_cast<int>(transformed_top_left.x()), static_cast<int>(color_camera_info->width));
-        bounding_box.top_left.y = clamp(0, static_cast<int>(transformed_top_left.y()), static_cast<int>(color_camera_info->height));
+        const auto &depth_position = head->depth_position;
+        bounding_box.top_left.x = clamp<int>(0, depth_position.x - half_width, color_camera_info->width);
+        bounding_box.top_left.y = clamp<int>(0, depth_position.y - half_height, color_camera_info->height);
 
-        bounding_box.bottom_right.x = clamp(0, static_cast<int>(transformed_bottom_right.x()), static_cast<int>(color_camera_info->width));
-        bounding_box.bottom_right.y = clamp(0, static_cast<int>(transformed_bottom_right.y()), static_cast<int>(color_camera_info->height));
+        bounding_box.bottom_right.x = clamp<int>(0, depth_position.x + half_width, color_camera_info->width);
+        bounding_box.bottom_right.y = clamp<int>(0, depth_position.y + half_height, color_camera_info->height);
       }
     }
 
@@ -599,16 +574,21 @@ void RosDevice::onFrame(const Device::Frame &frame)
     if (isPublisherValid(body_markers_pub_)) body_markers_pub_.publish(toMarkerArray(body_frame.bodies));
 
     // TF2
-    if (!tf_broadcaster_)
+    if (!tf_broadcaster_ && publish_tf)
     {
       tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>();
     }
 
-    std::vector<geometry_msgs::TransformStamped> transforms;
-    for (const auto &body : body_frame.bodies)
+    if (tf_broadcaster_)
     {
-      tf_broadcaster_->sendTransform(bodyTransforms(body));
+      std::vector<geometry_msgs::TransformStamped> transforms;
+      for (const auto &body : body_frame.bodies)
+      {
+        tf_broadcaster_->sendTransform(bodyTransforms(body));
+      }
     }
+
+    
   }
   else
   {

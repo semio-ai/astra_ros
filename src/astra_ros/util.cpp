@@ -199,6 +199,7 @@ astra_ros::Body astra_ros::toRos(const astra_body_t &body, const std_msgs::Heade
 
   ret.left_hand_pose = static_cast<std::uint8_t>(body.handPoses.leftHand);
   ret.right_hand_pose = static_cast<std::uint8_t>(body.handPoses.rightHand);
+
   return ret;
 }
 

@@ -112,6 +112,7 @@ namespace astra_ros
     bool publish_body_markers;
     bool publish_body_mask;
     bool publish_floor_mask;
+    bool publish_tf;
     std::string body_frame_id;
 
     Device::Ptr device_;
