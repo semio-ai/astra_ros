@@ -7,6 +7,5 @@ devices:
       publish_body_markers: true
       frame_id: "quori/head_camera_optical"
       publish_tf: false
-      license: "r8kl5VBA6uvdrGkaR5OFvCQmmUnRY24d6UzyDByrT9yaR9KWLdP1cqbIHFIOPe3eTVRWRq7SHsVS3+d8FlTVBU5hbWU9Um9zcyBNZWFkfE9yZz18Q29tbWVudD1leUpqYjIxdFpXNTBJam9pYTJWNVgyTjFjM1J2YldWeUlpd2lZM1Z6ZEc5dFpYSmZkSGx3WlNJNkltbHRjRzl5ZEdGdWRDSXNJbXhwWTJWdWMyVmZkSGx3WlNJNkltOXViR2x1WlNJc0luWmxjbk5wYjI0aU9qRjl8RXhwaXJhdGlvbj05OTk5OTk5OTk5"
     # ir: true
     
